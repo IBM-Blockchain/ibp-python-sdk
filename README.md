@@ -43,6 +43,7 @@ Any issues with this SDK can be opened here or against the IBM Blockchain Platfo
 Use this command to download and install the Blockchain Python SDK project.
 Once this is done your Python application will be able to use it:
 ```
+pip install --upgrade ibm_cloud_sdk_core
 pip install --upgrade ibp-python-sdk
 ```
 
