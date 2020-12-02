@@ -20,7 +20,7 @@ import pytest
 import re
 import requests
 import responses
-from ibp_python_sdk.blockchain_v3 import *
+from ibp_python_sdk import *
 
 
 service = BlockchainV3(
