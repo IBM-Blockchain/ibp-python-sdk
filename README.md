@@ -43,7 +43,6 @@ Any issues with this SDK can be opened here or against the IBM Blockchain Platfo
 Use this command to download and install the Blockchain Python SDK project.
 Once this is done your Python application will be able to use it:
 ```
-pip install --upgrade ibm-cloud-sdk-core
 pip install --upgrade ibp-python-sdk
 ```
 
@@ -65,9 +64,7 @@ Start by requiring the IBP Python SDK and then creating a `client`.
 Here's an example of how to construct an instance:
 
 ```py
-from ibm_cloud.blockchain_v3 import BlockchainV3
-from ibm_cloud_sdk_core.authenticators.iam_authenticator import IAMAuthenticator
-from ibm_cloud_sdk_core import ApiException
+from ibp_python_sdk import BlockchainV3, IAMAuthenticator, ApiException
 
 # create an authenticator - see more examples below
 authenticator = IAMAuthenticator(
@@ -104,9 +101,7 @@ For details, see [Authenticating with IAM tokens](https://cloud.ibm.com/docs/ser
 # Example - letting the SDK manage the IAM access token
 
 # imports
-from ibp-python-sdk.blockchain_v3 import BlockchainV3
-from ibm_cloud_sdk_core.authenticators.iam_authenticator import IAMAuthenticator
-from ibm_cloud_sdk_core import ApiException
+from ibp_python_sdk import BlockchainV3, IAMAuthenticator, ApiException
 
 # Create an authenticator
 authenticator = IAMAuthenticator(
@@ -124,9 +119,7 @@ client.set_service_url('https://{API-Endpoint}')
 # Example - manage the IAM access token myself
 
 # imports
-from ibp-python-sdk.blockchain_v3 import BlockchainV3
-from ibm_cloud_sdk_core.authenticators.iam_authenticator import IAMAuthenticator
-from ibm_cloud_sdk_core import ApiException
+from ibp_python_sdk import BlockchainV3, IAMAuthenticator, ApiException
 
 # Create an authenticator
 authenticator = IAMAuthenticator(
