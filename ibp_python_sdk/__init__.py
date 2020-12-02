@@ -17,4 +17,4 @@
 from ibm_cloud_sdk_core import IAMTokenManager, DetailedResponse, BaseService, ApiException
 from ibm_cloud_sdk_core.authenticators.iam_authenticator import IAMAuthenticator
 from .common import get_sdk_headers
-from .blockchain_v3 import BlockchainV3
+from .blockchain_v3 import *

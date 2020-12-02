@@ -20,8 +20,14 @@ import pytest
 import re
 import requests
 import responses
-from ibp_python_sdk.blockchain_v3 import *
 
+# dumb hack to load the relative file up two levels
+import sys
+import os.path
+sys.path.append(
+    os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, os.path.pardir))
+)
+from ibp_python_sdk import *
 
 service = BlockchainV3(
     authenticator=NoAuthAuthenticator()
