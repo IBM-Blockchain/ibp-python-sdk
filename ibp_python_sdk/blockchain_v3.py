@@ -14,6 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# IBM OpenAPI SDK Code Generator Version: 3.19.0-be3b4618-20201113-200858
+ 
 """
 This doc lists APIs that you can use to interact with your IBM Blockchain Platform console
 (IBP console)
@@ -146,8 +148,10 @@ class BlockchainV3(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        url = '/ak/api/v3/components/{0}'.format(
-            *self.encode_path_vars(id))
+        path_param_keys = ['id']
+        path_param_values = self.encode_path_vars(id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/ak/api/v3/components/{id}'.format(**path_param_dict)
         request = self.prepare_request(method='GET',
                                        url=url,
                                        headers=headers,
@@ -191,8 +195,10 @@ class BlockchainV3(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        url = '/ak/api/v3/components/{0}'.format(
-            *self.encode_path_vars(id))
+        path_param_keys = ['id']
+        path_param_values = self.encode_path_vars(id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/ak/api/v3/components/{id}'.format(**path_param_dict)
         request = self.prepare_request(method='DELETE',
                                        url=url,
                                        headers=headers)
@@ -238,8 +244,10 @@ class BlockchainV3(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        url = '/ak/api/v3/kubernetes/components/{0}'.format(
-            *self.encode_path_vars(id))
+        path_param_keys = ['id']
+        path_param_values = self.encode_path_vars(id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/ak/api/v3/kubernetes/components/{id}'.format(**path_param_dict)
         request = self.prepare_request(method='DELETE',
                                        url=url,
                                        headers=headers)
@@ -496,8 +504,10 @@ class BlockchainV3(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        url = '/ak/api/v3/kubernetes/components/fabric-ca/{0}'.format(
-            *self.encode_path_vars(id))
+        path_param_keys = ['id']
+        path_param_values = self.encode_path_vars(id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/ak/api/v3/kubernetes/components/fabric-ca/{id}'.format(**path_param_dict)
         request = self.prepare_request(method='PUT',
                                        url=url,
                                        headers=headers,
@@ -567,8 +577,10 @@ class BlockchainV3(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        url = '/ak/api/v3/components/fabric-ca/{0}'.format(
-            *self.encode_path_vars(id))
+        path_param_keys = ['id']
+        path_param_values = self.encode_path_vars(id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/ak/api/v3/components/fabric-ca/{id}'.format(**path_param_dict)
         request = self.prepare_request(method='PUT',
                                        url=url,
                                        headers=headers,
@@ -622,8 +634,10 @@ class BlockchainV3(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        url = '/ak/api/v3/kubernetes/components/fabric-ca/{0}/actions'.format(
-            *self.encode_path_vars(id))
+        path_param_keys = ['id']
+        path_param_values = self.encode_path_vars(id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/ak/api/v3/kubernetes/components/fabric-ca/{id}/actions'.format(**path_param_dict)
         request = self.prepare_request(method='POST',
                                        url=url,
                                        headers=headers,
@@ -889,8 +903,10 @@ class BlockchainV3(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        url = '/ak/api/v3/components/fabric-peer/{0}'.format(
-            *self.encode_path_vars(id))
+        path_param_keys = ['id']
+        path_param_values = self.encode_path_vars(id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/ak/api/v3/components/fabric-peer/{id}'.format(**path_param_dict)
         request = self.prepare_request(method='PUT',
                                        url=url,
                                        headers=headers,
@@ -953,8 +969,10 @@ class BlockchainV3(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        url = '/ak/api/v3/kubernetes/components/fabric-peer/{0}/actions'.format(
-            *self.encode_path_vars(id))
+        path_param_keys = ['id']
+        path_param_values = self.encode_path_vars(id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/ak/api/v3/kubernetes/components/fabric-peer/{id}/actions'.format(**path_param_dict)
         request = self.prepare_request(method='POST',
                                        url=url,
                                        headers=headers,
@@ -1045,8 +1063,10 @@ class BlockchainV3(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        url = '/ak/api/v3/kubernetes/components/fabric-peer/{0}'.format(
-            *self.encode_path_vars(id))
+        path_param_keys = ['id']
+        path_param_values = self.encode_path_vars(id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/ak/api/v3/kubernetes/components/fabric-peer/{id}'.format(**path_param_dict)
         request = self.prepare_request(method='PUT',
                                        url=url,
                                        headers=headers,
@@ -1382,8 +1402,10 @@ class BlockchainV3(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        url = '/ak/api/v3/components/fabric-orderer/{0}'.format(
-            *self.encode_path_vars(id))
+        path_param_keys = ['id']
+        path_param_values = self.encode_path_vars(id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/ak/api/v3/components/fabric-orderer/{id}'.format(**path_param_dict)
         request = self.prepare_request(method='PUT',
                                        url=url,
                                        headers=headers,
@@ -1442,8 +1464,10 @@ class BlockchainV3(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        url = '/ak/api/v3/kubernetes/components/fabric-orderer/{0}/actions'.format(
-            *self.encode_path_vars(id))
+        path_param_keys = ['id']
+        path_param_values = self.encode_path_vars(id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/ak/api/v3/kubernetes/components/fabric-orderer/{id}/actions'.format(**path_param_dict)
         request = self.prepare_request(method='POST',
                                        url=url,
                                        headers=headers,
@@ -1535,8 +1559,10 @@ class BlockchainV3(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        url = '/ak/api/v3/kubernetes/components/fabric-orderer/{0}'.format(
-            *self.encode_path_vars(id))
+        path_param_keys = ['id']
+        path_param_values = self.encode_path_vars(id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/ak/api/v3/kubernetes/components/fabric-orderer/{id}'.format(**path_param_dict)
         request = self.prepare_request(method='PUT',
                                        url=url,
                                        headers=headers,
@@ -1620,8 +1646,10 @@ class BlockchainV3(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        url = '/ak/api/v3/kubernetes/components/{0}/config'.format(
-            *self.encode_path_vars(id))
+        path_param_keys = ['id']
+        path_param_values = self.encode_path_vars(id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/ak/api/v3/kubernetes/components/{id}/config'.format(**path_param_dict)
         request = self.prepare_request(method='PUT',
                                        url=url,
                                        headers=headers,
@@ -1763,8 +1791,10 @@ class BlockchainV3(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        url = '/ak/api/v3/components/msp/{0}'.format(
-            *self.encode_path_vars(id))
+        path_param_keys = ['id']
+        path_param_values = self.encode_path_vars(id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/ak/api/v3/components/msp/{id}'.format(**path_param_dict)
         request = self.prepare_request(method='PUT',
                                        url=url,
                                        headers=headers,
@@ -1811,8 +1841,10 @@ class BlockchainV3(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        url = '/ak/api/v3/components/msps/{0}'.format(
-            *self.encode_path_vars(msp_id))
+        path_param_keys = ['msp_id']
+        path_param_values = self.encode_path_vars(msp_id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/ak/api/v3/components/msps/{msp_id}'.format(**path_param_dict)
         request = self.prepare_request(method='GET',
                                        url=url,
                                        headers=headers,
@@ -1872,8 +1904,10 @@ class BlockchainV3(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        url = '/ak/api/v3/kubernetes/components/{0}/certs'.format(
-            *self.encode_path_vars(id))
+        path_param_keys = ['id']
+        path_param_values = self.encode_path_vars(id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/ak/api/v3/kubernetes/components/{id}/certs'.format(**path_param_dict)
         request = self.prepare_request(method='PUT',
                                        url=url,
                                        headers=headers,
@@ -1964,7 +1998,7 @@ class BlockchainV3(BaseService):
 
 
     def get_components_by_type(self,
-        component_type: str,
+        type: str,
         *,
         deployment_attrs: str = None,
         parsed_certs: str = None,
@@ -1977,7 +2011,7 @@ class BlockchainV3(BaseService):
         Get the IBP console's data on components that are a specific type. The component
         might be imported or created.
 
-        :param str component_type: The type to filter components on.
+        :param str type: The type to filter components on.
         :param str deployment_attrs: (optional) Set to 'included' if the response
                should include Kubernetes deployment attributes such as 'resources',
                'storage', 'zone', 'region', 'admin_certs', etc. Default responses will not
@@ -1998,8 +2032,8 @@ class BlockchainV3(BaseService):
         :rtype: DetailedResponse with `dict` result representing a `GetMultiComponentsResponse` object
         """
 
-        if component_type is None:
-            raise ValueError('component_type must be provided')
+        if type is None:
+            raise ValueError('type must be provided')
         headers = {}
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V3',
@@ -2016,8 +2050,10 @@ class BlockchainV3(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        url = '/ak/api/v3/components/types/{component-type}'.format(
-            *self.encode_path_vars(component_type))
+        path_param_keys = ['type']
+        path_param_values = self.encode_path_vars(type)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/ak/api/v3/components/types/{type}'.format(**path_param_dict)
         request = self.prepare_request(method='GET',
                                        url=url,
                                        headers=headers,
@@ -2080,8 +2116,10 @@ class BlockchainV3(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        url = '/ak/api/v3/components/tags/{0}'.format(
-            *self.encode_path_vars(tag))
+        path_param_keys = ['tag']
+        path_param_values = self.encode_path_vars(tag)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/ak/api/v3/components/tags/{tag}'.format(**path_param_dict)
         request = self.prepare_request(method='GET',
                                        url=url,
                                        headers=headers,
@@ -2125,8 +2163,10 @@ class BlockchainV3(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        url = '/ak/api/v3/components/tags/{0}'.format(
-            *self.encode_path_vars(tag))
+        path_param_keys = ['tag']
+        path_param_values = self.encode_path_vars(tag)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/ak/api/v3/components/tags/{tag}'.format(**path_param_dict)
         request = self.prepare_request(method='DELETE',
                                        url=url,
                                        headers=headers)
@@ -2171,8 +2211,10 @@ class BlockchainV3(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        url = '/ak/api/v3/kubernetes/components/tags/{0}'.format(
-            *self.encode_path_vars(tag))
+        path_param_keys = ['tag']
+        path_param_values = self.encode_path_vars(tag)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/ak/api/v3/kubernetes/components/tags/{tag}'.format(**path_param_dict)
         request = self.prepare_request(method='DELETE',
                                        url=url,
                                        headers=headers)
@@ -2516,8 +2558,10 @@ class BlockchainV3(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        url = '/ak/api/v3/signature_collections/{0}'.format(
-            *self.encode_path_vars(id))
+        path_param_keys = ['id']
+        path_param_values = self.encode_path_vars(id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/ak/api/v3/signature_collections/{id}'.format(**path_param_dict)
         request = self.prepare_request(method='DELETE',
                                        url=url,
                                        headers=headers)
@@ -2956,7 +3000,7 @@ class GetComponentsByTypeEnums:
     Enums for get_components_by_type parameters.
     """
 
-    class ComponentType(str, Enum):
+    class Type(str, Enum):
         """
         The type to filter components on.
         """
