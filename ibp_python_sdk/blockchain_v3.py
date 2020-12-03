@@ -2011,7 +2011,7 @@ class BlockchainV3(BaseService):
         Get the IBP console's data on components that are a specific type. The component
         might be imported or created.
 
-        :param str type: The type to filter components on.
+        :param str type: The type of component to filter components on.
         :param str deployment_attrs: (optional) Set to 'included' if the response
                should include Kubernetes deployment attributes such as 'resources',
                'storage', 'zone', 'region', 'admin_certs', etc. Default responses will not
@@ -3002,7 +3002,7 @@ class GetComponentsByTypeEnums:
 
     class Type(str, Enum):
         """
-        The type to filter components on.
+        The type of component to filter components on.
         """
         FABRIC_PEER = 'fabric-peer'
         FABRIC_ORDERER = 'fabric-orderer'
