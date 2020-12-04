@@ -42,8 +42,6 @@ try:
     obj = json.loads(data)
     siid_url = obj["url"]
     apikey = obj["apikey"]
-    print(f'siid_url:\n {siid_url}')
-    print(f'apikey:\n {apikey}')
 except Exception as e:
     # if we fail to load the local file pull from env
     siid_url = os.environ['IBP_SERVICE_INSTANCE_URL']
