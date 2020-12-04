@@ -110,6 +110,19 @@ class TestCreateCa():
         }
         response = client.create_ca(**opts)
         assert response.status_code == 200
+        assert response.result['id']
+        assert response.result['dep_component_id']
+        assert response.result['display_name']
+        assert response.result['api_url']
+        assert response.result['operations_url']
+        assert response.result['msp']
+        assert response.result['resources']
+        assert response.result['scheme_version']
+        assert response.result['storage']
+        assert response.result['tags']
+        assert response.result['timestamp']
+        assert response.result['version']
+        assert response.result['zone']
         assert response.result['display_name'] == 'My CA'
         assert response.result['id'] == 'myca'
         ValueStorage.created_ca_id = response.result['id']
@@ -135,11 +148,28 @@ class TestGetCa():
     def test_get_a_ca(self):
         opts = {
             'id': ValueStorage.created_ca_id,
-            'deploymentAttrs': 'included',
+            'deployment_attrs': 'included',
             'cache': 'skip'
         }
         response = client.get_component(**opts)
         assert response.status_code == 200
+        assert response.result['api_url']
+        assert response.result['config_override']
+        assert response.result['dep_component_id']
+        assert response.result['display_name']
+        assert response.result['id']
+        assert response.result['location']
+        assert response.result['msp']
+        assert response.result['operations_url']
+        assert response.result['region']
+        assert response.result['resources']
+        assert response.result['scheme_version']
+        assert response.result['storage']
+        assert response.result['tags']
+        assert response.result['type']
+        assert response.result['timestamp']
+        assert response.result['version']
+        assert response.result['zone']
         assert response.result['id'] == ValueStorage.created_ca_id
         assert response.result['location'] == 'ibm_saas'
 
@@ -156,20 +186,56 @@ class TestRestartCa():
 
 class TestListComponents():
     def test_list_components(self):
-        response = client.list_components()
-        result = response.result['components'][0]
+        response = client.list_components(deployment_attrs='included')
+        firstComp = response.result['components'][0]
         assert response.status_code == 200
-        assert result['id'] == ValueStorage.created_ca_id
+        assert firstComp['api_url']
+        assert firstComp['config_override']
+        assert firstComp['dep_component_id']
+        assert firstComp['display_name']
+        assert firstComp['id']
+        assert firstComp['location']
+        assert firstComp['msp']
+        assert firstComp['operations_url']
+        assert firstComp['region']
+        assert firstComp['resources']
+        assert firstComp['scheme_version']
+        assert firstComp['storage']
+        assert firstComp['tags']
+        assert firstComp['type']
+        assert firstComp['timestamp']
+        assert firstComp['version']
+        assert firstComp['zone']
+        assert firstComp['id'] == ValueStorage.created_ca_id
+        assert firstComp['tags'] == ['fabric-ca', 'ibm_saas']
+
+class TestListComponentsNoDep():
+    def test_list_components_no_dep_attributes(self):
+        response = client.list_components()
+        firstComp = response.result['components'][0]
+        assert response.status_code == 200
+        assert firstComp['api_url']
+        assert firstComp['config_override']
+        assert firstComp['display_name']
+        assert firstComp['id']
+        assert firstComp['location']
+        assert firstComp['msp']
+        assert firstComp['operations_url']
+        assert firstComp['scheme_version']
+        assert firstComp['tags']
+        assert firstComp['type']
+        assert firstComp['timestamp']
+        assert firstComp['id'] == ValueStorage.created_ca_id
 
 class TestGetAllCas():
     def test_get_all_cas(self):
         response = client.get_components_by_type(
             type='fabric-ca'
         )
-        result = response.result['components'][0]
+        firstComp = response.result['components'][0]
         assert response.status_code == 200
-        assert result['id'] == ValueStorage.created_ca_id
-        assert result['type'] == 'fabric-ca'
+        assert firstComp['id'] == ValueStorage.created_ca_id
+        assert firstComp['type'] == 'fabric-ca'
 
 class TestGetSaas():
     def test_get_all_saas_components(self):
@@ -213,6 +279,11 @@ class TestImportCa():
         }
         response = client.import_ca(**opts)
         assert response.status_code == 200
+        assert response.result['id']
+        assert response.result['api_url']
+        assert response.result['operations_url']
+        assert response.result['msp']
+        assert response.result['timestamp']
         assert response.result['type'] == 'fabric-ca'
         assert response.result['display_name'] == 'My Imported CA'
         ValueStorage.imported_ca_id = response.result['id']
@@ -231,6 +302,11 @@ class TestEditDataOnCa():
         }
         response = client.edit_ca(**opts)
         assert response.status_code == 200
+        assert response.result['id']
+        assert response.result['api_url']
+        assert response.result['operations_url']
+        assert response.result['msp']
+        assert response.result['timestamp']
         assert response.result['display_name'] == 'My Other CA'
         assert response.result['tags'] == ['blue_team','dev','fabric-ca','ibm_saas']
 
@@ -308,6 +384,11 @@ class TestImportPeer():
         }
         response = client.import_peer(**opts)
         assert response.status_code == 200
+        assert response.result['id']
+        assert response.result['api_url']
+        assert response.result['operations_url']
+        assert response.result['msp']
+        assert response.result['timestamp']
         assert response.result['type'] == 'fabric-peer'
         assert response.result['display_name'] == 'My Imported Peer'
         ValueStorage.imported_peer_id = response.result['id']
@@ -326,6 +407,11 @@ class TestEditDataOnPeer():
         }
         response = client.edit_peer(**opts)
         assert response.status_code == 200
+        assert response.result['id']
+        assert response.result['api_url']
+        assert response.result['operations_url']
+        assert response.result['msp']
+        assert response.result['timestamp']
         assert response.result['display_name'] == 'My Other Peer'
         assert response.result['tags'] == ['fabric-peer','ibm_saas', 'prod', 'red_team']
 
@@ -336,7 +422,7 @@ class TestImportOrderer():
             'cluster_id': 'abcde',
             'cluster_name': 'My Raft OS',
             'grpcwp_url': 'https://n3a3ec3-myorderer-proxy.ibp.us-south.containers.appdomain.cloud:443',
-            'apiUrl': 'grpcs://n3a3ec3-myorderer.ibp.us-south.containers.appdomain.cloud:7050',
+            'api_url': 'grpcs://n3a3ec3-myorderer.ibp.us-south.containers.appdomain.cloud:7050',
             'operations_url': 'https://n3a3ec3-myorderer.ibp.us-south.containers.appdomain.cloud:8443',
             'msp_id': 'OrdererOrg1',
             'system_channel_id': 'testchainid',
@@ -362,6 +448,11 @@ class TestImportOrderer():
         }
         response = client.import_orderer(**opts)
         assert response.status_code == 200
+        assert response.result['id']
+        assert response.result['api_url']
+        assert response.result['operations_url']
+        assert response.result['msp']
+        assert response.result['timestamp']
         assert response.result['type'] == 'fabric-orderer'
         assert response.result['display_name'] == 'My Imported Orderer Node'
         ValueStorage.imported_os_id = response.result['id']
@@ -376,4 +467,9 @@ class TestEditDataOnOrderer():
         }
         response = client.edit_orderer(**opts)
         assert response.status_code == 200
+        assert response.result['id']
+        assert response.result['api_url']
+        assert response.result['operations_url']
+        assert response.result['msp']
+        assert response.result['timestamp']
         assert response.result['display_name'] == 'My Other Imported Orderer Node'

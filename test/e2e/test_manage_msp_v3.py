@@ -139,3 +139,8 @@ class TestRemoveMsp():
         assert response.result['id'] == ValueStorage.import_msp_id
         assert response.result['display_name'] == 'My Other Org'
 
+# clean up tests
+class TestRemoveComponents():
+    def test_remove_all_components(self):
+        response = client.delete_all_components()
+        assert response.status_code == 200
