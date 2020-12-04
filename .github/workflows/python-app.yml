@@ -14,6 +14,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:  # set environment variables for test suite
+      IAM_API_KEY: ${{ secrets.IAM_API_KEY }}
+      IBP_SERVICE_INSTANCE_URL: ${{ secrets.IBP_SERVICE_INSTANCE_URL }}
+
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.8
