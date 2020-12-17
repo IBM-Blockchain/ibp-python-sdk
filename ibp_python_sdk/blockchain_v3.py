@@ -286,7 +286,7 @@ class BlockchainV3(BaseService):
                The field `tlsca` is optional. The IBP console will copy the value of
                `config_override.ca` into `config_override.tlsca` if
                `config_override.tlsca` is omitted (which is recommended).
-               *The field **names** below are not case-sensitive.*.
+               *The nested field **names** below are not case-sensitive.*.
         :param CreateCaBodyResources resources: (optional) CPU and memory
                properties. This feature is not available if using a free Kubernetes
                cluster.
@@ -459,7 +459,8 @@ class BlockchainV3(BaseService):
                file](https://hyperledger-fabric-ca.readthedocs.io/en/release-1.4/serverconfig.html)
                if you want use custom attributes to configure advanced CA features. Omit
                if not.
-               *The field **names** below are not case-sensitive.*.
+               *The nested field **names** below are not case-sensitive.*
+               *The nested fields sent will be merged with the existing settings.*.
         :param float replicas: (optional) The number of replica pods running at any
                given time.
         :param UpdateCaBodyResources resources: (optional) CPU and memory
@@ -678,7 +679,7 @@ class BlockchainV3(BaseService):
                Peer configuration
                file](https://github.com/hyperledger/fabric/blob/release-1.4/sampleconfig/core.yaml)
                if you want use custom attributes to configure the Peer. Omit if not.
-               *The field **names** below are not case-sensitive.*.
+               *The nested field **names** below are not case-sensitive.*.
         :param PeerResources resources: (optional) CPU and memory properties. This
                feature is not available if using a free Kubernetes cluster.
         :param CreatePeerBodyStorage storage: (optional) Disk space properties.
@@ -1010,7 +1011,8 @@ class BlockchainV3(BaseService):
                configuration
                file](https://github.com/hyperledger/fabric/blob/release-1.4/sampleconfig/core.yaml)
                if you want use custom attributes to configure the Peer. Omit if not.
-               *The field **names** below are not case-sensitive.*.
+               *The nested field **names** below are not case-sensitive.*
+               *The nested fields sent will be merged with the existing settings.*.
         :param UpdatePeerBodyCrypto crypto: (optional)
         :param NodeOu node_ou: (optional)
         :param float replicas: (optional) The number of replica pods running at any
@@ -1505,7 +1507,8 @@ class BlockchainV3(BaseService):
                Orderer configuration
                file](https://github.com/hyperledger/fabric/blob/release-1.4/sampleconfig/orderer.yaml)
                if you want use custom attributes to configure the Orderer. Omit if not.
-               *The field **names** below are not case-sensitive.*.
+               *The nested field **names** below are not case-sensitive.*
+               *The nested fields sent will be merged with the existing settings.*.
         :param UpdateOrdererBodyCrypto crypto: (optional)
         :param NodeOu node_ou: (optional)
         :param float replicas: (optional) The number of replica pods running at any
@@ -6430,7 +6433,7 @@ class ConfigOrdererCreate():
     Override the [Fabric Orderer configuration
     file](https://github.com/hyperledger/fabric/blob/release-1.4/sampleconfig/orderer.yaml)
     if you want use custom attributes to configure the Orderer. Omit if not.
-    *The field **names** below are not case-sensitive.*.
+    *The nested field **names** below are not case-sensitive.*.
 
     :attr ConfigOrdererGeneral general: (optional)
     :attr ConfigOrdererDebug debug: (optional) Controls the debugging options for
@@ -6599,7 +6602,8 @@ class ConfigOrdererUpdate():
     Update the [Fabric Orderer configuration
     file](https://github.com/hyperledger/fabric/blob/release-1.4/sampleconfig/orderer.yaml)
     if you want use custom attributes to configure the Orderer. Omit if not.
-    *The field **names** below are not case-sensitive.*.
+    *The nested field **names** below are not case-sensitive.*
+    *The nested fields sent will be merged with the existing settings.*.
 
     :attr ConfigOrdererGeneralUpdate general: (optional)
     :attr ConfigOrdererDebug debug: (optional) Controls the debugging options for
@@ -7430,7 +7434,7 @@ class ConfigPeerCreate():
     Override the [Fabric Peer configuration
     file](https://github.com/hyperledger/fabric/blob/release-1.4/sampleconfig/core.yaml)
     if you want use custom attributes to configure the Peer. Omit if not.
-    *The field **names** below are not case-sensitive.*.
+    *The nested field **names** below are not case-sensitive.*.
 
     :attr ConfigPeerCreatePeer peer: (optional)
     :attr ConfigPeerChaincode chaincode: (optional)
@@ -8378,7 +8382,8 @@ class ConfigPeerUpdate():
     Update the [Fabric Peer configuration
     file](https://github.com/hyperledger/fabric/blob/release-1.4/sampleconfig/core.yaml)
     if you want use custom attributes to configure the Peer. Omit if not.
-    *The field **names** below are not case-sensitive.*.
+    *The nested field **names** below are not case-sensitive.*
+    *The nested fields sent will be merged with the existing settings.*.
 
     :attr ConfigPeerUpdatePeer peer: (optional)
     :attr ConfigPeerChaincode chaincode: (optional)
@@ -9701,7 +9706,7 @@ class CreateCaBodyConfigOverride():
     The field `tlsca` is optional. The IBP console will copy the value of
     `config_override.ca` into `config_override.tlsca` if `config_override.tlsca` is
     omitted (which is recommended).
-    *The field **names** below are not case-sensitive.*.
+    *The nested field **names** below are not case-sensitive.*.
 
     :attr ConfigCACreate ca:
     :attr ConfigCACreate tlsca: (optional)
@@ -16948,7 +16953,8 @@ class UpdateCaBodyConfigOverride():
     Update the [Fabric CA configuration
     file](https://hyperledger-fabric-ca.readthedocs.io/en/release-1.4/serverconfig.html)
     if you want use custom attributes to configure advanced CA features. Omit if not.
-    *The field **names** below are not case-sensitive.*.
+    *The nested field **names** below are not case-sensitive.*
+    *The nested fields sent will be merged with the existing settings.*.
 
     :attr ConfigCAUpdate ca:
     """
