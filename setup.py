@@ -42,7 +42,7 @@ import sys
 import pkg_resources
 import setuptools
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 PACKAGE_NAME = 'ibp-python-sdk'
 PACKAGE_DESC = 'Python client library for IBM Blockchain Platform'
 
