@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.19.0-be3b4618-20201113-200858
+# IBM OpenAPI SDK Code Generator Version: 3.22.0-937b9a1c-20201211-223043
  
 """
 This doc lists APIs that you can use to interact with your IBM Blockchain Platform console
@@ -1164,7 +1164,7 @@ class BlockchainV3(BaseService):
                use.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `OrdererResponse` object
+        :rtype: DetailedResponse with `dict` result representing a `CreateOrdererResponse` object
         """
 
         if orderer_type is None:
@@ -10012,6 +10012,63 @@ class CreateOrdererRaftBodyStorage():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+class CreateOrdererResponse():
+    """
+    CreateOrdererResponse.
+
+    :attr List[OrdererResponse] created: (optional) Contains array of ordering
+          nodes.
+    """
+
+    def __init__(self,
+                 *,
+                 created: List['OrdererResponse'] = None) -> None:
+        """
+        Initialize a CreateOrdererResponse object.
+
+        :param List[OrdererResponse] created: (optional) Contains array of ordering
+               nodes.
+        """
+        self.created = created
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'CreateOrdererResponse':
+        """Initialize a CreateOrdererResponse object from a json dictionary."""
+        args = {}
+        if 'created' in _dict:
+            args['created'] = [OrdererResponse.from_dict(x) for x in _dict.get('created')]
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a CreateOrdererResponse object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'created') and self.created is not None:
+            _dict['created'] = [x.to_dict() for x in self.created]
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this CreateOrdererResponse object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'CreateOrdererResponse') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'CreateOrdererResponse') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
 class CreatePeerBodyStorage():
     """
     Disk space properties. This feature is not available if using a free Kubernetes
@@ -13061,7 +13118,7 @@ class GetPublicSettingsResponse():
           per minute to allow. Exceeding this limit results in 429 error responses.
     :attr bool memory_cache_enabled: (optional) If true an in memory cache will be
           used against couchdb requests.
-    :attr str port: (optional) Internal port that IBP console is running on.
+    :attr float port: (optional) Internal port that IBP console is running on.
     :attr bool proxy_cache_enabled: (optional) If true an in memory cache will be
           used for internal proxy requests.
     :attr str proxy_tls_fabric_reqs: (optional) If `"always"` requests to Fabric
@@ -13072,8 +13129,8 @@ class GetPublicSettingsResponse():
           from the browser to the component.
     :attr str proxy_tls_http_url: (optional) The URL to use to proxy an http request
           to a Fabric component.
-    :attr object proxy_tls_ws_url: (optional) The URL to use to proxy WebSocket
-          request to a Fabric component.
+    :attr str proxy_tls_ws_url: (optional) The URL to use to proxy WebSocket request
+          to a Fabric component.
     :attr str region: (optional) If it's "local", things like https are disabled.
     :attr bool session_cache_enabled: (optional) If true an in memory cache will be
           used for browser session data.
@@ -13121,11 +13178,11 @@ class GetPublicSettingsResponse():
                  max_req_per_min: float = None,
                  max_req_per_min_ak: float = None,
                  memory_cache_enabled: bool = None,
-                 port: str = None,
+                 port: float = None,
                  proxy_cache_enabled: bool = None,
                  proxy_tls_fabric_reqs: str = None,
                  proxy_tls_http_url: str = None,
-                 proxy_tls_ws_url: object = None,
+                 proxy_tls_ws_url: str = None,
                  region: str = None,
                  session_cache_enabled: bool = None,
                  timeouts: object = None,
@@ -13195,7 +13252,7 @@ class GetPublicSettingsResponse():
                responses.
         :param bool memory_cache_enabled: (optional) If true an in memory cache
                will be used against couchdb requests.
-        :param str port: (optional) Internal port that IBP console is running on.
+        :param float port: (optional) Internal port that IBP console is running on.
         :param bool proxy_cache_enabled: (optional) If true an in memory cache will
                be used for internal proxy requests.
         :param str proxy_tls_fabric_reqs: (optional) If `"always"` requests to
@@ -13206,8 +13263,8 @@ class GetPublicSettingsResponse():
                Fabric components will go directly from the browser to the component.
         :param str proxy_tls_http_url: (optional) The URL to use to proxy an http
                request to a Fabric component.
-        :param object proxy_tls_ws_url: (optional) The URL to use to proxy
-               WebSocket request to a Fabric component.
+        :param str proxy_tls_ws_url: (optional) The URL to use to proxy WebSocket
+               request to a Fabric component.
         :param str region: (optional) If it's "local", things like https are
                disabled.
         :param bool session_cache_enabled: (optional) If true an in memory cache
