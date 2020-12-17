@@ -89,7 +89,7 @@ class TestIBPSettings():
         assert response.result['IAM_CACHE_ENABLED']
         assert response.result['IAM_URL']
         assert response.result['IBM_ID_CALLBACK_URL']
-        assert response.result['IGNORE_CONFIG_FILE']
+        assert response.result['IGNORE_CONFIG_FILE'] == True or response.result['IGNORE_CONFIG_FILE'] == False
         assert response.result['INACTIVITY_TIMEOUTS']
         assert response.result['INFRASTRUCTURE']
         assert response.result['LANDING_URL']
