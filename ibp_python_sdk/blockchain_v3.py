@@ -1,6 +1,6 @@
 # coding: utf-8
 
-# (C) Copyright IBM Corp. 2020.
+# (C) Copyright IBM Corp. 2021.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -260,6 +260,7 @@ class BlockchainV3(BaseService):
         display_name: str,
         config_override: 'CreateCaBodyConfigOverride',
         *,
+        id: str = None,
         resources: 'CreateCaBodyResources' = None,
         storage: 'CreateCaBodyStorage' = None,
         zone: str = None,
@@ -287,6 +288,10 @@ class BlockchainV3(BaseService):
                `config_override.ca` into `config_override.tlsca` if
                `config_override.tlsca` is omitted (which is recommended).
                *The nested field **names** below are not case-sensitive.*.
+        :param str id: (optional) The unique identifier of this component. Must
+               start with a letter, be lowercase and only contain letters and numbers. If
+               `id` is not provide a component id will be generated using the field
+               `display_name` as the base.
         :param CreateCaBodyResources resources: (optional) CPU and memory
                properties. This feature is not available if using a free Kubernetes
                cluster.
@@ -334,6 +339,7 @@ class BlockchainV3(BaseService):
         data = {
             'display_name': display_name,
             'config_override': config_override,
+            'id': id,
             'resources': resources,
             'storage': storage,
             'zone': zone,
@@ -366,6 +372,7 @@ class BlockchainV3(BaseService):
         api_url: str,
         msp: 'ImportCaBodyMsp',
         *,
+        id: str = None,
         location: str = None,
         operations_url: str = None,
         tags: List[str] = None,
@@ -384,6 +391,10 @@ class BlockchainV3(BaseService):
                would send requests to this URL. Include the protocol, hostname/ip and
                port.
         :param ImportCaBodyMsp msp:
+        :param str id: (optional) The unique identifier of this component. Must
+               start with a letter, be lowercase and only contain letters and numbers. If
+               `id` is not provide a component id will be generated using the field
+               `display_name` as the base.
         :param str location: (optional) Indicates where the component is running.
         :param str operations_url: (optional) The operations URL for the CA.
                Include the protocol, hostname/ip and port.
@@ -413,6 +424,7 @@ class BlockchainV3(BaseService):
             'display_name': display_name,
             'api_url': api_url,
             'msp': msp,
+            'id': id,
             'location': location,
             'operations_url': operations_url,
             'tags': tags,
@@ -653,6 +665,7 @@ class BlockchainV3(BaseService):
         display_name: str,
         crypto: 'CryptoObject',
         *,
+        id: str = None,
         config_override: 'ConfigPeerCreate' = None,
         resources: 'PeerResources' = None,
         storage: 'CreatePeerBodyStorage' = None,
@@ -675,6 +688,10 @@ class BlockchainV3(BaseService):
         :param CryptoObject crypto: See this
                [topic](/docs/blockchain?topic=blockchain-ibp-v2-apis#ibp-v2-apis-config)
                for instructions on how to build a crypto object.
+        :param str id: (optional) The unique identifier of this component. Must
+               start with a letter, be lowercase and only contain letters and numbers. If
+               `id` is not provide a component id will be generated using the field
+               `display_name` as the base.
         :param ConfigPeerCreate config_override: (optional) Override the [Fabric
                Peer configuration
                file](https://github.com/hyperledger/fabric/blob/release-1.4/sampleconfig/core.yaml)
@@ -731,6 +748,7 @@ class BlockchainV3(BaseService):
             'msp_id': msp_id,
             'display_name': display_name,
             'crypto': crypto,
+            'id': id,
             'config_override': config_override,
             'resources': resources,
             'storage': storage,
@@ -765,6 +783,7 @@ class BlockchainV3(BaseService):
         msp: 'MspCryptoField',
         msp_id: str,
         *,
+        id: str = None,
         api_url: str = None,
         location: str = None,
         operations_url: str = None,
@@ -783,6 +802,10 @@ class BlockchainV3(BaseService):
                the protocol, hostname/ip and port.
         :param MspCryptoField msp: The msp crypto data.
         :param str msp_id: The MSP id that is related to this component.
+        :param str id: (optional) The unique identifier of this component. Must
+               start with a letter, be lowercase and only contain letters and numbers. If
+               `id` is not provide a component id will be generated using the field
+               `display_name` as the base.
         :param str api_url: (optional) The gRPC URL for the peer. Typically, client
                applications would send requests to this URL. Include the protocol,
                hostname/ip and port.
@@ -817,6 +840,7 @@ class BlockchainV3(BaseService):
             'grpcwp_url': grpcwp_url,
             'msp': msp,
             'msp_id': msp_id,
+            'id': id,
             'api_url': api_url,
             'location': location,
             'operations_url': operations_url,
@@ -1085,8 +1109,9 @@ class BlockchainV3(BaseService):
         crypto: List['CryptoObject'],
         *,
         cluster_name: str = None,
+        id: str = None,
         cluster_id: str = None,
-        external_append: str = None,
+        external_append: bool = None,
         config_override: List['ConfigOrdererCreate'] = None,
         resources: 'CreateOrdererRaftBodyResources' = None,
         storage: 'CreateOrdererRaftBodyStorage' = None,
@@ -1122,6 +1147,10 @@ class BlockchainV3(BaseService):
                This field should only be set if you are creating a new OS cluster or when
                appending to an unknown (external) OS cluster. An unknown/external cluster
                is one that this IBP console has not imported or created.
+        :param str id: (optional) The unique identifier of this component. Must
+               start with a letter, be lowercase and only contain letters and numbers. If
+               `id` is not provide a component id will be generated using the field
+               `display_name` as the base.
         :param str cluster_id: (optional) This field should only be set if you are
                appending a new raft node to an **existing** raft cluster. When appending
                to a known (internal) OS cluster set `cluster_id` to the same value used by
@@ -1136,7 +1165,7 @@ class BlockchainV3(BaseService):
                init this node by sending the updated system-channel config-block with the
                [Submit config block to orderer](#submit-block) API. The node will not be
                usable until these steps are completed.
-        :param str external_append: (optional) Set to `true` only if you are
+        :param bool external_append: (optional) Set to `true` only if you are
                appending to an unknown (external) OS cluster. Else set it to `false` or
                omit the field. An unknown/external cluster is one that this IBP console
                has not imported or created.
@@ -1196,6 +1225,7 @@ class BlockchainV3(BaseService):
             'display_name': display_name,
             'crypto': crypto,
             'cluster_name': cluster_name,
+            'id': id,
             'cluster_id': cluster_id,
             'external_append': external_append,
             'config_override': config_override,
@@ -1235,6 +1265,7 @@ class BlockchainV3(BaseService):
         *,
         api_url: str = None,
         cluster_id: str = None,
+        id: str = None,
         location: str = None,
         operations_url: str = None,
         system_channel_id: str = None,
@@ -1247,8 +1278,8 @@ class BlockchainV3(BaseService):
         Import an existing Ordering Service (OS) to your IBP console. It is recommended to
         only import components that were created by this or another IBP console.
 
-        :param str cluster_name: A descriptive name for an ordering service. The
-               parent IBP console tile displays this name.
+        :param str cluster_name: A descriptive name for the ordering service. The
+               parent IBP console orderer tile displays this name.
         :param str display_name: A descriptive base name for each ordering node.
                One or more child IBP console tiles display this name.
         :param str grpcwp_url: The gRPC web proxy URL in front of the orderer.
@@ -1258,8 +1289,12 @@ class BlockchainV3(BaseService):
         :param str api_url: (optional) The gRPC URL for the orderer. Typically,
                client applications would send requests to this URL. Include the protocol,
                hostname/ip and port.
-        :param str cluster_id: (optional) A unique id to identify this rafter
-               cluster. Generated if not provided.
+        :param str cluster_id: (optional) A unique id to identify this ordering
+               service cluster.
+        :param str id: (optional) The unique identifier of this component. Must
+               start with a letter, be lowercase and only contain letters and numbers. If
+               `id` is not provide a component id will be generated using the field
+               `display_name` as the base.
         :param str location: (optional) Indicates where the component is running.
         :param str operations_url: (optional) Used by Fabric health checker to
                monitor the health status of this orderer node. For more information, see
@@ -1299,6 +1334,7 @@ class BlockchainV3(BaseService):
             'msp_id': msp_id,
             'api_url': api_url,
             'cluster_id': cluster_id,
+            'id': id,
             'location': location,
             'operations_url': operations_url,
             'system_channel_id': system_channel_id,
@@ -1346,8 +1382,8 @@ class BlockchainV3(BaseService):
 
         :param str id: The `id` of the component to modify. Use the [Get all
                components](#list_components) API to determine the component id.
-        :param str cluster_name: (optional) A descriptive name for an ordering
-               service. The parent IBP console tile displays this name.
+        :param str cluster_name: (optional) A descriptive name for the ordering
+               service. The parent IBP console orderer tile displays this name.
         :param str display_name: (optional) A descriptive base name for each
                ordering node. One or more child IBP console tiles display this name.
         :param str api_url: (optional) The gRPC URL for the orderer. Typically,
@@ -3504,7 +3540,10 @@ class CaResponse():
     """
     Contains the details of a CA.
 
-    :attr str id: (optional) The unique identifier of this component.
+    :attr str id: (optional) The unique identifier of this component. Must start
+          with a letter, be lowercase and only contain letters and numbers. If `id` is not
+          provide a component id will be generated using the field `display_name` as the
+          base.
     :attr str dep_component_id: (optional) The unique id for the component in
           Kubernetes. Not available if component was imported.
     :attr str display_name: (optional) A descriptive name for this CA. The IBP
@@ -3555,7 +3594,10 @@ class CaResponse():
         """
         Initialize a CaResponse object.
 
-        :param str id: (optional) The unique identifier of this component.
+        :param str id: (optional) The unique identifier of this component. Must
+               start with a letter, be lowercase and only contain letters and numbers. If
+               `id` is not provide a component id will be generated using the field
+               `display_name` as the base.
         :param str dep_component_id: (optional) The unique id for the component in
                Kubernetes. Not available if component was imported.
         :param str display_name: (optional) A descriptive name for this CA. The IBP
@@ -7530,6 +7572,7 @@ class ConfigPeerCreatePeer():
           channel, what is the latest channel config, and what possible sets of peers
           satisfy the endorsement policy (given a smart contract and a channel).
     :attr ConfigPeerLimits limits: (optional)
+    :attr ConfigPeerGateway gateway: (optional)
     """
 
     def __init__(self,
@@ -7545,7 +7588,8 @@ class ConfigPeerCreatePeer():
                  admin_service: 'ConfigPeerAdminService' = None,
                  validator_pool_size: float = None,
                  discovery: 'ConfigPeerDiscovery' = None,
-                 limits: 'ConfigPeerLimits' = None) -> None:
+                 limits: 'ConfigPeerLimits' = None,
+                 gateway: 'ConfigPeerGateway' = None) -> None:
         """
         Initialize a ConfigPeerCreatePeer object.
 
@@ -7573,6 +7617,7 @@ class ConfigPeerCreatePeer():
                sets of peers satisfy the endorsement policy (given a smart contract and a
                channel).
         :param ConfigPeerLimits limits: (optional)
+        :param ConfigPeerGateway gateway: (optional)
         """
         self.id = id
         self.network_id = network_id
@@ -7586,6 +7631,7 @@ class ConfigPeerCreatePeer():
         self.validator_pool_size = validator_pool_size
         self.discovery = discovery
         self.limits = limits
+        self.gateway = gateway
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'ConfigPeerCreatePeer':
@@ -7615,6 +7661,8 @@ class ConfigPeerCreatePeer():
             args['discovery'] = ConfigPeerDiscovery.from_dict(_dict.get('discovery'))
         if 'limits' in _dict:
             args['limits'] = ConfigPeerLimits.from_dict(_dict.get('limits'))
+        if 'gateway' in _dict:
+            args['gateway'] = ConfigPeerGateway.from_dict(_dict.get('gateway'))
         return cls(**args)
 
     @classmethod
@@ -7649,6 +7697,8 @@ class ConfigPeerCreatePeer():
             _dict['discovery'] = self.discovery.to_dict()
         if hasattr(self, 'limits') and self.limits is not None:
             _dict['limits'] = self.limits.to_dict()
+        if hasattr(self, 'gateway') and self.gateway is not None:
+            _dict['gateway'] = self.gateway.to_dict()
         return _dict
 
     def _to_dict(self):
@@ -8477,6 +8527,7 @@ class ConfigPeerUpdatePeer():
           channel, what is the latest channel config, and what possible sets of peers
           satisfy the endorsement policy (given a smart contract and a channel).
     :attr ConfigPeerLimits limits: (optional)
+    :attr ConfigPeerGateway gateway: (optional)
     """
 
     def __init__(self,
@@ -8491,7 +8542,8 @@ class ConfigPeerUpdatePeer():
                  admin_service: 'ConfigPeerAdminService' = None,
                  validator_pool_size: float = None,
                  discovery: 'ConfigPeerDiscovery' = None,
-                 limits: 'ConfigPeerLimits' = None) -> None:
+                 limits: 'ConfigPeerLimits' = None,
+                 gateway: 'ConfigPeerGateway' = None) -> None:
         """
         Initialize a ConfigPeerUpdatePeer object.
 
@@ -8517,6 +8569,7 @@ class ConfigPeerUpdatePeer():
                sets of peers satisfy the endorsement policy (given a smart contract and a
                channel).
         :param ConfigPeerLimits limits: (optional)
+        :param ConfigPeerGateway gateway: (optional)
         """
         self.id = id
         self.network_id = network_id
@@ -8529,6 +8582,7 @@ class ConfigPeerUpdatePeer():
         self.validator_pool_size = validator_pool_size
         self.discovery = discovery
         self.limits = limits
+        self.gateway = gateway
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'ConfigPeerUpdatePeer':
@@ -8556,6 +8610,8 @@ class ConfigPeerUpdatePeer():
             args['discovery'] = ConfigPeerDiscovery.from_dict(_dict.get('discovery'))
         if 'limits' in _dict:
             args['limits'] = ConfigPeerLimits.from_dict(_dict.get('limits'))
+        if 'gateway' in _dict:
+            args['gateway'] = ConfigPeerGateway.from_dict(_dict.get('gateway'))
         return cls(**args)
 
     @classmethod
@@ -8588,6 +8644,8 @@ class ConfigPeerUpdatePeer():
             _dict['discovery'] = self.discovery.to_dict()
         if hasattr(self, 'limits') and self.limits is not None:
             _dict['limits'] = self.limits.to_dict()
+        if hasattr(self, 'gateway') and self.gateway is not None:
+            _dict['gateway'] = self.gateway.to_dict()
         return _dict
 
     def _to_dict(self):
@@ -9094,6 +9152,63 @@ class ConfigPeerDiscovery():
         return self.__dict__ == other.__dict__
 
     def __ne__(self, other: 'ConfigPeerDiscovery') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+class ConfigPeerGateway():
+    """
+    ConfigPeerGateway.
+
+    :attr bool enabled: (optional) Enable or disable the 'Fabric Gateway' on the
+          peer.
+    """
+
+    def __init__(self,
+                 *,
+                 enabled: bool = None) -> None:
+        """
+        Initialize a ConfigPeerGateway object.
+
+        :param bool enabled: (optional) Enable or disable the 'Fabric Gateway' on
+               the peer.
+        """
+        self.enabled = enabled
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'ConfigPeerGateway':
+        """Initialize a ConfigPeerGateway object from a json dictionary."""
+        args = {}
+        if 'enabled' in _dict:
+            args['enabled'] = _dict.get('enabled')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a ConfigPeerGateway object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'enabled') and self.enabled is not None:
+            _dict['enabled'] = self.enabled
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this ConfigPeerGateway object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'ConfigPeerGateway') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'ConfigPeerGateway') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
@@ -10780,7 +10895,10 @@ class DeleteComponentResponse():
     :attr str message: (optional)
     :attr str type: (optional) The type of this component. Such as: "fabric-peer",
           "fabric-ca", "fabric-orderer", etc.
-    :attr str id: (optional) The unique identifier of this component.
+    :attr str id: (optional) The unique identifier of this component. Must start
+          with a letter, be lowercase and only contain letters and numbers. If `id` is not
+          provide a component id will be generated using the field `display_name` as the
+          base.
     :attr str display_name: (optional) A descriptive name for this peer. The IBP
           console tile displays this name.
     """
@@ -10797,7 +10915,10 @@ class DeleteComponentResponse():
         :param str message: (optional)
         :param str type: (optional) The type of this component. Such as:
                "fabric-peer", "fabric-ca", "fabric-orderer", etc.
-        :param str id: (optional) The unique identifier of this component.
+        :param str id: (optional) The unique identifier of this component. Must
+               start with a letter, be lowercase and only contain letters and numbers. If
+               `id` is not provide a component id will be generated using the field
+               `display_name` as the base.
         :param str display_name: (optional) A descriptive name for this peer. The
                IBP console tile displays this name.
         """
@@ -11473,6 +11594,11 @@ class GenericComponentResponse():
           component types].
     :attr str display_name: (optional) The displayed name of this component.
           [Available on all component types].
+    :attr str cluster_id: (optional) A unique id to identify this ordering service
+          cluster. [Available on orderer components].
+    :attr str cluster_name: (optional) A descriptive name for the ordering service.
+          The parent IBP console orderer tile displays this name. [Available on orderer
+          components].
     :attr str grpcwp_url: (optional) The URL for the grpc web proxy for this
           component. [Available on peer/orderer components].
     :attr str api_url: (optional) The gRPC URL for the component. Typically, client
@@ -11512,6 +11638,8 @@ class GenericComponentResponse():
                  id: str = None,
                  type: str = None,
                  display_name: str = None,
+                 cluster_id: str = None,
+                 cluster_name: str = None,
                  grpcwp_url: str = None,
                  api_url: str = None,
                  operations_url: str = None,
@@ -11536,6 +11664,11 @@ class GenericComponentResponse():
                component types].
         :param str display_name: (optional) The displayed name of this component.
                [Available on all component types].
+        :param str cluster_id: (optional) A unique id to identify this ordering
+               service cluster. [Available on orderer components].
+        :param str cluster_name: (optional) A descriptive name for the ordering
+               service. The parent IBP console orderer tile displays this name. [Available
+               on orderer components].
         :param str grpcwp_url: (optional) The URL for the grpc web proxy for this
                component. [Available on peer/orderer components].
         :param str api_url: (optional) The gRPC URL for the component. Typically,
@@ -11573,6 +11706,8 @@ class GenericComponentResponse():
         self.id = id
         self.type = type
         self.display_name = display_name
+        self.cluster_id = cluster_id
+        self.cluster_name = cluster_name
         self.grpcwp_url = grpcwp_url
         self.api_url = api_url
         self.operations_url = operations_url
@@ -11599,6 +11734,10 @@ class GenericComponentResponse():
             args['type'] = _dict.get('type')
         if 'display_name' in _dict:
             args['display_name'] = _dict.get('display_name')
+        if 'cluster_id' in _dict:
+            args['cluster_id'] = _dict.get('cluster_id')
+        if 'cluster_name' in _dict:
+            args['cluster_name'] = _dict.get('cluster_name')
         if 'grpcwp_url' in _dict:
             args['grpcwp_url'] = _dict.get('grpcwp_url')
         if 'api_url' in _dict:
@@ -11645,6 +11784,10 @@ class GenericComponentResponse():
             _dict['type'] = self.type
         if hasattr(self, 'display_name') and self.display_name is not None:
             _dict['display_name'] = self.display_name
+        if hasattr(self, 'cluster_id') and self.cluster_id is not None:
+            _dict['cluster_id'] = self.cluster_id
+        if hasattr(self, 'cluster_name') and self.cluster_name is not None:
+            _dict['cluster_name'] = self.cluster_name
         if hasattr(self, 'grpcwp_url') and self.grpcwp_url is not None:
             _dict['grpcwp_url'] = self.grpcwp_url
         if hasattr(self, 'api_url') and self.api_url is not None:
@@ -15168,7 +15311,10 @@ class MspResponse():
     """
     Contains the details of an MSP (Membership Service Provider).
 
-    :attr str id: (optional) The unique identifier of this component.
+    :attr str id: (optional) The unique identifier of this component. Must start
+          with a letter, be lowercase and only contain letters and numbers. If `id` is not
+          provide a component id will be generated using the field `display_name` as the
+          base.
     :attr str type: (optional) The type of this component. Such as: "fabric-peer",
           "fabric-ca", "fabric-orderer", etc.
     :attr str display_name: (optional) A descriptive name for this MSP. The IBP
@@ -15206,7 +15352,10 @@ class MspResponse():
         """
         Initialize a MspResponse object.
 
-        :param str id: (optional) The unique identifier of this component.
+        :param str id: (optional) The unique identifier of this component. Must
+               start with a letter, be lowercase and only contain letters and numbers. If
+               `id` is not provide a component id will be generated using the field
+               `display_name` as the base.
         :param str type: (optional) The type of this component. Such as:
                "fabric-peer", "fabric-ca", "fabric-orderer", etc.
         :param str display_name: (optional) A descriptive name for this MSP. The
@@ -15424,7 +15573,10 @@ class OrdererResponse():
     """
     Contains the details of an ordering node.
 
-    :attr str id: (optional) The unique identifier of this component.
+    :attr str id: (optional) The unique identifier of this component. Must start
+          with a letter, be lowercase and only contain letters and numbers. If `id` is not
+          provide a component id will be generated using the field `display_name` as the
+          base.
     :attr str dep_component_id: (optional) The unique id for the component in
           Kubernetes. Not available if component was imported.
     :attr str api_url: (optional) The gRPC URL for the orderer. Typically, client
@@ -15432,6 +15584,10 @@ class OrdererResponse():
           and port.
     :attr str display_name: (optional) A descriptive base name for each ordering
           node. One or more child IBP console tiles display this name.
+    :attr str cluster_id: (optional) A unique id to identify this ordering service
+          cluster.
+    :attr str cluster_name: (optional) A descriptive name for the ordering service.
+          The parent IBP console orderer tile displays this name.
     :attr str grpcwp_url: (optional) The gRPC web proxy URL in front of the orderer.
           Include the protocol, hostname/ip and port.
     :attr str location: (optional) Indicates where the component is running.
@@ -15480,6 +15636,8 @@ class OrdererResponse():
                  dep_component_id: str = None,
                  api_url: str = None,
                  display_name: str = None,
+                 cluster_id: str = None,
+                 cluster_name: str = None,
                  grpcwp_url: str = None,
                  location: str = None,
                  operations_url: str = None,
@@ -15501,7 +15659,10 @@ class OrdererResponse():
         """
         Initialize a OrdererResponse object.
 
-        :param str id: (optional) The unique identifier of this component.
+        :param str id: (optional) The unique identifier of this component. Must
+               start with a letter, be lowercase and only contain letters and numbers. If
+               `id` is not provide a component id will be generated using the field
+               `display_name` as the base.
         :param str dep_component_id: (optional) The unique id for the component in
                Kubernetes. Not available if component was imported.
         :param str api_url: (optional) The gRPC URL for the orderer. Typically,
@@ -15509,6 +15670,10 @@ class OrdererResponse():
                hostname/ip and port.
         :param str display_name: (optional) A descriptive base name for each
                ordering node. One or more child IBP console tiles display this name.
+        :param str cluster_id: (optional) A unique id to identify this ordering
+               service cluster.
+        :param str cluster_name: (optional) A descriptive name for the ordering
+               service. The parent IBP console orderer tile displays this name.
         :param str grpcwp_url: (optional) The gRPC web proxy URL in front of the
                orderer. Include the protocol, hostname/ip and port.
         :param str location: (optional) Indicates where the component is running.
@@ -15559,6 +15724,8 @@ class OrdererResponse():
         self.dep_component_id = dep_component_id
         self.api_url = api_url
         self.display_name = display_name
+        self.cluster_id = cluster_id
+        self.cluster_name = cluster_name
         self.grpcwp_url = grpcwp_url
         self.location = location
         self.operations_url = operations_url
@@ -15590,6 +15757,10 @@ class OrdererResponse():
             args['api_url'] = _dict.get('api_url')
         if 'display_name' in _dict:
             args['display_name'] = _dict.get('display_name')
+        if 'cluster_id' in _dict:
+            args['cluster_id'] = _dict.get('cluster_id')
+        if 'cluster_name' in _dict:
+            args['cluster_name'] = _dict.get('cluster_name')
         if 'grpcwp_url' in _dict:
             args['grpcwp_url'] = _dict.get('grpcwp_url')
         if 'location' in _dict:
@@ -15644,6 +15815,10 @@ class OrdererResponse():
             _dict['api_url'] = self.api_url
         if hasattr(self, 'display_name') and self.display_name is not None:
             _dict['display_name'] = self.display_name
+        if hasattr(self, 'cluster_id') and self.cluster_id is not None:
+            _dict['cluster_id'] = self.cluster_id
+        if hasattr(self, 'cluster_name') and self.cluster_name is not None:
+            _dict['cluster_name'] = self.cluster_name
         if hasattr(self, 'grpcwp_url') and self.grpcwp_url is not None:
             _dict['grpcwp_url'] = self.grpcwp_url
         if hasattr(self, 'location') and self.location is not None:
@@ -15952,7 +16127,10 @@ class PeerResponse():
     """
     Contains the details of a peer.
 
-    :attr str id: (optional) The unique identifier of this component.
+    :attr str id: (optional) The unique identifier of this component. Must start
+          with a letter, be lowercase and only contain letters and numbers. If `id` is not
+          provide a component id will be generated using the field `display_name` as the
+          base.
     :attr str dep_component_id: (optional) The unique id for the component in
           Kubernetes. Not available if component was imported.
     :attr str api_url: (optional) The gRPC URL for the peer. Typically, client
@@ -16018,7 +16196,10 @@ class PeerResponse():
         """
         Initialize a PeerResponse object.
 
-        :param str id: (optional) The unique identifier of this component.
+        :param str id: (optional) The unique identifier of this component. Must
+               start with a letter, be lowercase and only contain letters and numbers. If
+               `id` is not provide a component id will be generated using the field
+               `display_name` as the base.
         :param str dep_component_id: (optional) The unique id for the component in
                Kubernetes. Not available if component was imported.
         :param str api_url: (optional) The gRPC URL for the peer. Typically, client
@@ -18257,7 +18438,8 @@ class IdentityAttrs():
     :attr str hf_registrar_roles: (optional)
     :attr str hf_registrar_delegate_roles: (optional)
     :attr bool hf_revoker: (optional)
-    :attr bool hf_intermediate_ca: (optional)
+    :attr bool hf_intermediate_ca: (optional) If `true` the CA **can** be an
+          intermediate CA.
     :attr bool hf_gen_crl: (optional)
     :attr str hf_registrar_attributes: (optional)
     :attr bool hf_affiliation_mgr: (optional)
@@ -18278,7 +18460,8 @@ class IdentityAttrs():
         :param str hf_registrar_roles: (optional)
         :param str hf_registrar_delegate_roles: (optional)
         :param bool hf_revoker: (optional)
-        :param bool hf_intermediate_ca: (optional)
+        :param bool hf_intermediate_ca: (optional) If `true` the CA **can** be an
+               intermediate CA.
         :param bool hf_gen_crl: (optional)
         :param str hf_registrar_attributes: (optional)
         :param bool hf_affiliation_mgr: (optional)

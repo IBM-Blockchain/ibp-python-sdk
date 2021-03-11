@@ -4,8 +4,7 @@ Python client library to use the IBM Cloud Blockchain **Service**.
 
 **This module will allow you to use native py functions to leverage the same functionality seen in the [IBP APIs](https://cloud.ibm.com/apidocs/blockchain)**
 
-<details>
-<summary>Table of Contents</summary>
+## Table of Contents
 
 * [Overview](#overview)
 * [Prerequisites](#prerequisites)
@@ -18,8 +17,6 @@ Python client library to use the IBM Cloud Blockchain **Service**.
   * [Error Handling](#error-handling)
 * [Generation](#generation)
 * [License](#license)
-
-</details>
 
 ## Overview
 
