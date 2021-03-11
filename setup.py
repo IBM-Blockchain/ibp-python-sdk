@@ -25,11 +25,13 @@ python -m twine upload --repository testpypi dist/*
 
 
 (Real) To Publish Run:
+# first increment version in this file below.
+# push to git.
 
 python setup.py sdist bdist_wheel
 python -m twine upload --repository pypi dist/*
 # enter __token__ for username
-# enter your api key for password
+# enter your api key for password (in password manager)
 # should see it on https://pypi.org/project/ibp-python-sdk/0.1.0/
 
 To Test Install:
@@ -42,7 +44,7 @@ import sys
 import pkg_resources
 import setuptools
 
-__version__ = '0.1.1' 
+__version__ = '0.1.2' 
 PACKAGE_NAME = 'ibp-python-sdk'
 PACKAGE_DESC = 'Python client library for IBM Blockchain Platform'
 
