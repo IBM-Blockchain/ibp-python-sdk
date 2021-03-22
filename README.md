@@ -52,7 +52,7 @@ Then find the corresponding python example to the right of the api documentation
 
 Alternatively you could manually browse the SDK's main file:
 
-- [ibm_cloud/blockchain_v3.py](./ibm_cloud/blockchain_v3.py).
+- [ibm_cloud/blockchain_v3.py](./ibp_python_sdk/blockchain_v3.py).
 
 ## Using the SDK
 This section provides general information on how to use the services contained in this SDK.
